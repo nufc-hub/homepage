@@ -1,3 +1,1 @@
-console.log("JavaScript");
-
-const add = 1;
+import "../src/style.css";
