@@ -22,11 +22,20 @@
   font-style: italic;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 body {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
   font-family: "Montserrat", sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* Header styling */
@@ -42,7 +51,7 @@ header::before {
   right: 0px;
   left: 0px;
   bottom: 0;
-  background: linear-gradient(1deg, #00a0b5, #007ee5 57.29%, #007ee5);
+  background: linear-gradient(135deg, var, #002147);
   clip-path: polygon(0 90%, 0 0, 184% 0);
   z-index: -1;
 }
@@ -60,6 +69,8 @@ header > .wrapper > .img-wrapper {
 
 .header-picture {
   width: min(100vw - 40px, 400px);
+  max-height: 450px;
+  object-fit: cover;
   box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.6);
 }
 
@@ -78,7 +89,6 @@ header > .wrapper > .img-wrapper {
 .header-text {
   display: flex;
   flex-direction: column;
-  box-sizing: border-box;
   width: min(100vw - 40px, 600px);
   padding: 0.75rem 1.5rem;
   gap: 0.75rem;
@@ -87,7 +97,7 @@ header > .wrapper > .img-wrapper {
   border-top: 4px solid;
   border-right: 4px solid;
   border-bottom: 4px solid;
-  border-image: linear-gradient(to right, #007bff, #d58bfc) 1;
+  border-image: linear-gradient(to right, #002147, #0057b8, #00a8e8) 1;
   /* add colour variables later */
 }
 
@@ -112,19 +122,28 @@ header > .wrapper > .img-wrapper {
 
 .header-social-links > a {
   padding: 0 0.5rem;
-  text-decoration: none;
+  transition: transform 0.4s;
+}
+
+.header-social-links > a:hover {
+  transform: scale(1.2);
 }
 
 /* Main styling */
 
 .projects {
   padding: 2rem 11rem;
+  margin-bottom: 7.5rem;
+}
+
+.projects > h2 {
+  font-size: 2.5rem;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 3rem;
+  gap: 1rem;
 }
 
 article {
@@ -142,6 +161,12 @@ article > .img-wrapper {
 .project-image {
   width: 100%;
   object-fit: cover;
+  transition: transform 0.3s ease-out;
+  transform-origin: center;
+}
+
+.project-image:hover {
+  transform: scale(1.1) perspective(500px) translateZ(10px);
 }
 
 .project-text {
@@ -166,12 +191,80 @@ article > .img-wrapper {
 
 .icons > a {
   padding: 0 0.4rem;
-  text-decoration: none;
+  transition: transform 0.2s;
+}
+
+.icons > a:hover {
+  transform: scale(1.2);
 }
 
 .project-text > p {
   line-height: 1.5;
   margin: 0;
+}
+
+/* Footer styling */
+
+footer {
+  position: relative;
+  color: white;
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  bottom: 0;
+  background: linear-gradient(135deg, #000428, #004e92);
+  z-index: -1;
+  /* Test colors for accessibility */
+}
+
+.contact {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 2rem 7.5rem 3rem 7.5rem;
+  line-height: 1.6rem;
+}
+
+.contact-details > h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+address {
+  font-size: 1rem;
+}
+
+address > p > a {
+  padding: 1rem 0rem;
+  color: white;
+}
+
+address > p > a:hover {
+  text-decoration: underline;
+}
+
+.footer-social-links > a {
+  padding: 0.4rem 0;
+  transition: transform 0.2s;
+}
+
+.footer-social-links > a:hover {
+  transform: scale(1.2);
+}
+
+.contact-image > img {
+  width: min(100vw - 40px, 400px);
+  max-height: 450px;
+  border-radius: 100px;
+}
+
+.footer-social-links {
+  display: flex;
+  gap: 1rem;
 }
 
 /* Tablet devices */
@@ -197,9 +290,6 @@ article > .img-wrapper {
     display: block;
     margin: auto;
     margin-top: 3.5rem;
-    padding: 0.2rem 1rem;
-
-    /* Edit this so that the header text is offset - check ipad */
   }
 
   .header-text > h1 {
@@ -216,8 +306,15 @@ article > .img-wrapper {
     padding: 2rem 5rem;
   }
 
-  .project-image {
-    /* height: 50rem; */
+  /* Footer Styling */
+
+  .contact {
+    padding: 2rem 2.5rem;
+    gap: 1rem;
+  }
+
+  .contact-image > img {
+    max-width: 300px;
   }
 }
 
@@ -225,6 +322,10 @@ article > .img-wrapper {
 
 @media (max-width: 767px) {
   /* Header styling */
+
+  header::before {
+    clip-path: polygon(0 35%, 0 0, 184% 0);
+  }
 
   header > .wrapper {
     display: flex;
@@ -261,6 +362,7 @@ article > .img-wrapper {
 
   .projects {
     padding: 1rem;
+    margin-bottom: 0;
   }
 
   .projects-grid {
@@ -271,20 +373,38 @@ article > .img-wrapper {
     margin-bottom: 3rem;
   }
 
-  .project-image {
-    /* height: 16rem; */
-  }
-
   .icons {
     gap: 0.1rem;
-  }
-
-  .icons > a {
-    padding: 0 0.4rem;
   }
 
   .icons > a > svg {
     width: 10vw;
     max-width: 32px;
+  }
+
+  /* Footer Styling */
+
+  .contact {
+    display: block;
+    padding: 1rem;
+  }
+
+  .contact-image {
+    display: flex;
+    justify-content: center;
+  }
+
+  .contact-image > img {
+    border-radius: 30px;
+  }
+
+  address > p > a {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
+
+  .footer-social-links {
+    margin-bottom: 1rem;
   }
 }
