@@ -59,7 +59,7 @@ export default {
           to: "favicon.png",
         },
         { from: "public/assets/images", to: "assets/images" },
-        { from: "public/assets/icons", to: "icons" },
+        { from: "public/assets/icons/favicon", to: "assets/icons" },
       ],
     }),
   ],
