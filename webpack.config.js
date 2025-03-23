@@ -58,7 +58,7 @@ export default {
           from: "public/assets/icons/favicon/favicon-96x96.png",
           to: "favicon.png",
         },
-        { from: "public/assets/images", to: "images" },
+        { from: "public/assets/images", to: "assets/images" },
         { from: "public/assets/icons", to: "icons" },
       ],
     }),
