@@ -36,6 +36,13 @@ export default {
           filename: "assets/fonts/[name][ext]",
         },
       },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg|webp)$/i, // Added "webp"
+        type: "asset/resource",
+        generator: {
+          filename: "assets/images/[name][ext]",
+        },
+      },
     ],
   },
   plugins: [
