@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -51,13 +52,12 @@ export default {
     new MiniCssExtractPlugin({
       filename: "styles.css",
     }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      filename: "index.html",
+    }),
     new CopyWebpackPlugin({
       patterns: [
-        { from: "public/assets/icons/favicon/favicon.ico", to: "favicon.ico" },
-        {
-          from: "public/assets/icons/favicon/favicon-96x96.png",
-          to: "favicon.png",
-        },
         { from: "public/assets/images", to: "assets/images" },
         { from: "public/assets/icons/favicon", to: "assets/icons" },
       ],
