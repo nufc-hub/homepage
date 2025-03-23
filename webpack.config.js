@@ -1,5 +1,6 @@
 import path from "path";
 import { fileURLToPath } from "url";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -26,8 +27,20 @@ export default {
       },
       {
         test: /\.css$/, // Process CSS files
-        use: ["style-loader", "css-loader"], // Inject CSS into the DOM
+        use: [MiniCssExtractPlugin.loader, "css-loader"], // Extract CSS into a separate file
+      },
+      {
+        test: /\.(woff|woff2|ttf|otf)$/,
+        type: "asset/resource",
+        generator: {
+          filename: "assets/fonts/[name][ext]",
+        },
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: "styles.css", // Extracted CSS file name
+    }),
+  ],
 };
