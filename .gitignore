@@ -60,11 +60,6 @@ node_modules/
 # Frontend build output (for Webpack, Vite, etc.)
 dist/
 
-# GitHub Pages (if using gh-pages branch)
-public/
-
 # VSCode settings (optional)
 .vscode/
 
-# Ignore large media files (optional)
-assets/uploads/
